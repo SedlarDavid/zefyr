@@ -138,6 +138,9 @@ class ZefyrField extends StatefulWidget {
   /// Defaults to [defaultZefyrEmbedBuilder].
   final ZefyrEmbedBuilder embedBuilder;
 
+  /// Custom theme data, if not provided [Theme.of(context)] is used instead
+  final ThemeData themeData;
+
   ZefyrField({
     Key key,
     @required this.controller,
@@ -159,6 +162,7 @@ class ZefyrField extends StatefulWidget {
     this.decoration,
     this.toolbar,
     this.embedBuilder = defaultZefyrEmbedBuilder,
+    this.themeData,
   }) : super(key: key);
 
   @override
@@ -167,6 +171,7 @@ class ZefyrField extends StatefulWidget {
 
 class _ZefyrFieldState extends State<ZefyrField> {
   bool _focused;
+
   void _editorFocusChanged() {
     setState(() {
       _focused = widget.focusNode.hasFocus;
@@ -210,6 +215,7 @@ class _ZefyrFieldState extends State<ZefyrField> {
       scrollPhysics: widget.scrollPhysics,
       onLaunchUrl: widget.onLaunchUrl,
       embedBuilder: widget.embedBuilder,
+      themeData: widget.themeData,
     );
 
     if (widget.toolbar != null) {
@@ -228,8 +234,7 @@ class _ZefyrFieldState extends State<ZefyrField> {
     }
 
     return AnimatedBuilder(
-      animation:
-          Listenable.merge(<Listenable>[widget.focusNode, widget.controller]),
+      animation: Listenable.merge(<Listenable>[widget.focusNode, widget.controller]),
       builder: (BuildContext context, Widget child) {
         return InputDecorator(
           decoration: _getEffectiveDecoration(),
@@ -244,9 +249,7 @@ class _ZefyrFieldState extends State<ZefyrField> {
   }
 
   InputDecoration _getEffectiveDecoration() {
-    final effectiveDecoration = (widget.decoration ?? const InputDecoration())
-        .applyDefaults(Theme.of(context).inputDecorationTheme)
-        .copyWith(
+    final effectiveDecoration = (widget.decoration ?? const InputDecoration()).applyDefaults(Theme.of(context).inputDecorationTheme).copyWith(
           enabled: !widget.readOnly,
           hintMaxLines: widget.decoration?.hintMaxLines,
         );
