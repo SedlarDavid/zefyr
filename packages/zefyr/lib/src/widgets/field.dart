@@ -141,6 +141,9 @@ class ZefyrField extends StatefulWidget {
   /// Custom theme data, if not provided [Theme.of(context)] is used instead
   final ThemeData themeData;
 
+  /// Custom text selection data, if not provided [TextSelectionTheme.of(context)] is used instead
+  final TextSelectionThemeData selectionData;
+
   ZefyrField({
     Key key,
     @required this.controller,
@@ -163,6 +166,7 @@ class ZefyrField extends StatefulWidget {
     this.toolbar,
     this.embedBuilder = defaultZefyrEmbedBuilder,
     this.themeData,
+    this.selectionData,
   }) : super(key: key);
 
   @override
@@ -216,6 +220,7 @@ class _ZefyrFieldState extends State<ZefyrField> {
       onLaunchUrl: widget.onLaunchUrl,
       embedBuilder: widget.embedBuilder,
       themeData: widget.themeData,
+      selectionData: widget.selectionData,
     );
 
     if (widget.toolbar != null) {

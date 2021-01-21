@@ -177,6 +177,9 @@ class ZefyrEditor extends StatefulWidget {
   /// Custom theme data, if not provided [Theme.of(context)] is used instead
   final ThemeData themeData;
 
+  /// Custom text selection data, if not provided [TextSelectionTheme.of(context)] is used instead
+  final TextSelectionThemeData selectionData;
+
   const ZefyrEditor({
     Key key,
     @required this.controller,
@@ -197,6 +200,7 @@ class ZefyrEditor extends StatefulWidget {
     this.onLaunchUrl,
     this.embedBuilder = defaultZefyrEmbedBuilder,
     this.themeData,
+    this.selectionData,
   })  : assert(controller != null),
         super(key: key);
 
@@ -234,7 +238,7 @@ class _ZefyrEditorState extends State<ZefyrEditor> implements EditorTextSelectio
   @override
   Widget build(BuildContext context) {
     final theme = widget.themeData ?? Theme.of(context);
-    final selectionTheme = TextSelectionTheme.of(context);
+    final selectionTheme = widget.selectionData ?? TextSelectionTheme.of(context);
 
     TextSelectionControls textSelectionControls;
     bool paintCursorAboveText;
