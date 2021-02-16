@@ -9,7 +9,7 @@ import 'package:meta/meta.dart';
 /// Mixin that allows tweak some ZefyrThemeData
 ///
 /// for now just line spacing defined as [VerticalSpacing]
-mixin ZefyrThemeAdjuster {
+abstract class ZefyrThemeAdjuster {
   VerticalSpacing paragraphSpacing;
   VerticalSpacing heading1Spacing;
   VerticalSpacing heading2Spacing;
