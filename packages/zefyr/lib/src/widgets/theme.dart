@@ -133,8 +133,7 @@ class ZefyrThemeData {
       fontSize: 16.0,
       height: 1.3,
     );
-    final ZefyrThemeAdjuster settingAdjuster =
-        themeData == ZefyrThemeAdjuster ? themeData : null;
+    final settingAdjuster = themeData == ZefyrThemeAdjuster ? (themeData as ZefyrThemeAdjuster) : null;
     final baseSpacing =
         settingAdjuster?.baseSpacing ?? VerticalSpacing(top: 6.0, bottom: 10);
 
