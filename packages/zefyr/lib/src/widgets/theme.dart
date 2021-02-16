@@ -120,8 +120,8 @@ class ZefyrThemeData {
       fontSize: 16.0,
       height: 1.3,
     );
-    final baseSpacing = themeData?.textTheme?.bodyText1 ??
-        VerticalSpacing(top: 6.0, bottom: 10);
+    final baseSpacing =
+        VerticalSpacing(top: themeData.textTheme.bodyText1.fontSize / 5);
 
     String fontFamily;
     switch (themeData.platform) {
@@ -158,8 +158,8 @@ class ZefyrThemeData {
           height: 1.15,
           fontWeight: FontWeight.w300,
         ),
-        spacing: themeData?.textTheme?.headline1 ??
-            VerticalSpacing(top: 16.0, bottom: 0.0),
+        spacing:
+            VerticalSpacing(top: themeData.textTheme.headline1.fontSize / 5),
       ),
       heading2: TextBlockTheme(
         style: TextStyle(
@@ -168,8 +168,8 @@ class ZefyrThemeData {
           height: 1.15,
           fontWeight: FontWeight.normal,
         ),
-        spacing: themeData?.textTheme?.headline2 ??
-            VerticalSpacing(bottom: 0.0, top: 8.0),
+        spacing:
+            VerticalSpacing(top: themeData.textTheme.headline2.fontSize / 5),
       ),
       heading3: TextBlockTheme(
         style: TextStyle(
@@ -178,8 +178,8 @@ class ZefyrThemeData {
           height: 1.25,
           fontWeight: FontWeight.w500,
         ),
-        spacing: themeData?.textTheme?.headline3 ??
-            VerticalSpacing(bottom: 0.0, top: 8.0),
+        spacing:
+            VerticalSpacing(top: themeData.textTheme.headline3.fontSize / 5),
       ),
       lists: TextBlockTheme(
         style: baseStyle,
