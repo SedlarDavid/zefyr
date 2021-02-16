@@ -6,19 +6,6 @@ import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 import 'package:meta/meta.dart';
 
-/// Mixin that allows tweak some ZefyrThemeData
-///
-/// for now just line spacing defined as [VerticalSpacing]
-abstract class ZefyrThemeAdjuster {
-  VerticalSpacing paragraphSpacing;
-  VerticalSpacing heading1Spacing;
-  VerticalSpacing heading2Spacing;
-  VerticalSpacing quoteSpacing;
-  VerticalSpacing codeSpacing;
-
-  VerticalSpacing baseSpacing;
-}
-
 /// Applies a Zefyr editor theme to descendant widgets.
 ///
 /// Describes colors and typographic styles for an editor.
@@ -133,9 +120,8 @@ class ZefyrThemeData {
       fontSize: 16.0,
       height: 1.3,
     );
-    final settingAdjuster = themeData == ZefyrThemeAdjuster ? (themeData as ZefyrThemeAdjuster) : null;
-    final baseSpacing =
-        settingAdjuster?.baseSpacing ?? VerticalSpacing(top: 6.0, bottom: 10);
+    final baseSpacing = themeData?.textTheme?.bodyText1 ??
+        VerticalSpacing(top: 6.0, bottom: 10);
 
     String fontFamily;
     switch (themeData.platform) {
@@ -162,7 +148,7 @@ class ZefyrThemeData {
       ),
       paragraph: TextBlockTheme(
         style: baseStyle,
-        spacing: settingAdjuster?.baseSpacing ?? baseSpacing,
+        spacing: baseSpacing,
         // lineSpacing is not relevant for paragraphs since they consist of one line
       ),
       heading1: TextBlockTheme(
@@ -172,7 +158,7 @@ class ZefyrThemeData {
           height: 1.15,
           fontWeight: FontWeight.w300,
         ),
-        spacing: settingAdjuster?.heading1Spacing ??
+        spacing: themeData?.textTheme?.headline1 ??
             VerticalSpacing(top: 16.0, bottom: 0.0),
       ),
       heading2: TextBlockTheme(
@@ -182,7 +168,7 @@ class ZefyrThemeData {
           height: 1.15,
           fontWeight: FontWeight.normal,
         ),
-        spacing: settingAdjuster?.heading2Spacing ??
+        spacing: themeData?.textTheme?.headline2 ??
             VerticalSpacing(bottom: 0.0, top: 8.0),
       ),
       heading3: TextBlockTheme(
@@ -192,7 +178,8 @@ class ZefyrThemeData {
           height: 1.25,
           fontWeight: FontWeight.w500,
         ),
-        spacing: VerticalSpacing(bottom: 0.0, top: 8.0),
+        spacing: themeData?.textTheme?.headline3 ??
+            VerticalSpacing(bottom: 0.0, top: 8.0),
       ),
       lists: TextBlockTheme(
         style: baseStyle,
@@ -201,7 +188,7 @@ class ZefyrThemeData {
       ),
       quote: TextBlockTheme(
         style: TextStyle(color: baseStyle.color.withOpacity(0.6)),
-        spacing: settingAdjuster?.baseSpacing ?? baseSpacing,
+        spacing: baseSpacing,
         lineSpacing: VerticalSpacing(top: 6, bottom: 2),
         decoration: BoxDecoration(
           border: Border(
@@ -216,7 +203,7 @@ class ZefyrThemeData {
           fontSize: 13.0,
           height: 1.15,
         ),
-        spacing: settingAdjuster?.baseSpacing ?? baseSpacing,
+        spacing: baseSpacing,
         decoration: BoxDecoration(
           color: Colors.grey.shade50,
           borderRadius: BorderRadius.circular(2),
